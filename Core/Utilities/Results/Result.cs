@@ -11,8 +11,9 @@ namespace Core.Utilities.Results
         // Overload yapmamızın sebebi illaki mesaj vermek zorunda kalmamamız 
         public Result(bool success, string message) : this(success)
         {
-            Message = message;
+            Message = message;   
         }
+
         public Result(bool success)
         {
             Success = success;
