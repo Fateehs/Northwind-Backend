@@ -27,7 +27,7 @@ namespace Business.Concrete
         {
             // business codes
 
-            if (product.ProductName.Length<2)
+            if (product.ProductName.Length < 2)
             {
                 return new ErrorResult(Messages.ProductNameInvalid);
             }
@@ -40,17 +40,17 @@ namespace Business.Concrete
         public IDataResult<List<Product>> GetAll()
         {
             // İş Kodları
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour == 7)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
             // succesdatareusltun içerisinde list of product var onunda constructoruna sağda kalan linq'i yolluyorsun
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id)); 
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
 
         public IDataResult<Product> GetById(int productId)
