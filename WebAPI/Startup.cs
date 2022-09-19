@@ -35,8 +35,8 @@ namespace WebAPI
             // IProductService istenirse arka planda ProductManager ý oluþtur ve ver IoC container'ý arkaplanda
             // çalýþtýrmaný saðlayan koddur newletir
             // burasý Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container gibi ortamlara taþýnacak
-            services.AddSingleton<IProductService,ProductManager>();
-            services.AddSingleton<IProductDal, EfProductDal>();
+            //services.AddSingleton<IProductService,ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
