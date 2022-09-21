@@ -31,7 +31,7 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
 
-            _productDal.Add(product); 
+            _productDal.Add(product);
 
             return new SuccessResult(Messages.ProductAdded);
         }
