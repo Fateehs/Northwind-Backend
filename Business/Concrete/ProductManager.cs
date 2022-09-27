@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -17,7 +18,6 @@ using FluentValidation;
 
 namespace Business.Concrete
 {
-    // Constructor Injection
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
@@ -29,6 +29,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         { 
@@ -56,7 +57,6 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            // İş Kodları
             if (DateTime.Now.Hour == 7)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
