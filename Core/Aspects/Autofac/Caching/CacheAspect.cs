@@ -29,7 +29,7 @@ namespace Core.Aspects.Autofac.Caching
             var key = $"{methodName}({string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))})";
             if (_cacheManager.IsAdd(key))
             {
-                invocation.ReturnValue = _cacheManager.Get(key); // return value gidip dbden çekmesin productmanagerdaki returnu çalıştırmasın gitsin cacheden çeksin
+                invocation.ReturnValue = _cacheManager.Get(key); // When cache had a data get the data otherwise add to cache
                 return;
             }
             invocation.Proceed();

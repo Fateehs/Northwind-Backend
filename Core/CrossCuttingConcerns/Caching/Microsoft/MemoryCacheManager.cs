@@ -12,12 +12,12 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
-        // Adapter Pattern
-        IMemoryCache _memoryCache;
+        // Adapter Pattern = adapting methods that currently on system
+        IMemoryCache _memoryCache; // Microsoft's caching service 
 
         public MemoryCacheManager()
         {
-            _memoryCache = ServiceTool.ServiceProvider.GetService<IMemoryCache>();
+            _memoryCache = ServiceTool.ServiceProvider.GetService<IMemoryCache>(); // getting instance created at background
         }
 
         public void Add(string key, object value, int duration)
@@ -30,14 +30,14 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
             return _memoryCache.Get<T>(key);
         }
 
-        public object Get(string key)
+        public object Get(string key) // Had to use boxing so type transformation
         {
             return _memoryCache.Get(key);
         }
 
         public bool IsAdd(string key)
         {
-            return _memoryCache.TryGetValue(key, out _); // birşey döndürmek istemiyorsan _ tekniğini kullanabilirsin
+            return _memoryCache.TryGetValue(key, out _); // (_) useful kind of situation like you don't want to enter parameters 
         }
 
         public void Remove(string key)

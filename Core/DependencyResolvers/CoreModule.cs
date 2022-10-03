@@ -16,7 +16,7 @@ namespace Core.DependencyResolvers
     {
         public void Load(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddMemoryCache(); // MemoryCacheManager içerisindeki IMemoryCache için
+            serviceCollection.AddMemoryCache(); // Microsoft's caching service
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
             serviceCollection.AddSingleton<Stopwatch>();
