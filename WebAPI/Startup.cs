@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -54,7 +56,10 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
             // IProductService istenirse arka planda ProductManager ý oluþtur ve ver IoC container'ý arkaplanda
             // çalýþtýrmaný saðlayan koddur newletir
             // burasý Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container gibi ortamlara taþýnacak
@@ -80,7 +85,7 @@ namespace WebAPI
 
             app.UseRouting();
 
-            app.UseAuthentication(); // middle wawe
+            app.UseAuthentication(); // middle ware
 
             app.UseAuthorization();
 
