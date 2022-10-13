@@ -58,7 +58,18 @@ namespace WebAPI.Controllers
             var result = _productService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        // intention coding / programing niyet güdümlü
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
             }
             return BadRequest(result);
         }
